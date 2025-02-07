@@ -32,3 +32,27 @@ vim.keymap.set('n', '<leader>sh', '<Plug>(GitGutterStageHunk)', { noremap = fals
 
 -- search and replace in visual mode
 vim.keymap.set('v', '<C-r>', '"hy:%s/<C-r>h/<C-r>h/gI<left><left><left>')
+
+vim.keymap.set('x', 'v', '<Plug>(expand_region_expand)', { silent = true })
+vim.keymap.set("n", ']c', ':GitGutterNextHunk<CR>zz')
+vim.keymap.set("n", '[c', ':GitGutterPrevHunk<CR>zz')
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+
+vim.keymap.set('n', '<leader>j', ':GFiles --others --exclude-standard --cached<CR>')
+vim.keymap.set('n', '<leader>J', vim.cmd.Files)
+vim.keymap.set('n', '<leader>c', vim.cmd.Commands)
+vim.keymap.set('n', '<leader>a', vim.cmd.Ag)
+
+local function strip_whitespace()
+  -- Save current cursor position (row, col)
+  local cur_row, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
+  -- Save the current search register
+  local old_query = vim.fn.getreg('/')
+  -- Perform the substitution
+  vim.cmd([[ %s/\s\+$//e ]])
+  -- Restore cursor position
+  vim.api.nvim_win_set_cursor(0, {cur_row, cur_col})
+  -- Restore the search register
+  vim.fn.setreg('/', old_query)
+end
+vim.keymap.set('n', '<leader>ss', strip_whitespace, { desc = "Strip trailing whitespace" })

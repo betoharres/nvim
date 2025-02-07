@@ -1,5 +1,8 @@
 require("betoharres.remap")
+require("betoharres.lsp")
 vim.opt.clipboard:append("unnamedplus")
+vim.opt.termguicolors = true
+vim.cmd.colorscheme "gruvbox-material"
 
 -- For convenience, assign the "opt" table to a local variable.
 local opt = vim.opt
@@ -84,40 +87,3 @@ vim.cmd([[
   highlight DiffChange guifg=black guibg=skyblue1
   highlight DiffDelete guifg=black guibg=gray45 gui=none
 ]])
-
-local function strip_whitespace()
-  -- Save current cursor position (row, col)
-  local cur_row, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
-
-  -- Save the current search register
-  local old_query = vim.fn.getreg('/')
-
-  -- Perform the substitution
-  vim.cmd([[ %s/\s\+$//e ]])
-
-  -- Restore cursor position
-  vim.api.nvim_win_set_cursor(0, {cur_row, cur_col})
-
-  -- Restore the search register
-  vim.fn.setreg('/', old_query)
-end
-vim.keymap.set('n', '<leader>ss', strip_whitespace, { desc = "Strip trailing whitespace" })
-
--- Replicate the behavior of InsertTabWrapper in Lua:
-local function insert_tab_wrapper()
-  local col = vim.fn.col('.') - 1
-  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%w') == nil then
-    -- At the beginning of the line or not on a word: insert a literal tab
-    return '\t'
-  else
-    -- Otherwise trigger completion with <C-n>
-    -- (uncomment if you want that behavior):
-    -- return vim.api.nvim_replace_termcodes('<C-n>', true, false, true)
-    -- For now, let's just insert a literal tab:
-    return '\t'
-  end
-end
-
--- Create an insert-mode mapping with an "expr" option
--- so it evaluates our Lua function's return value:
-vim.keymap.set('i', '<Tab>', insert_tab_wrapper, { expr = true })
