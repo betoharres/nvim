@@ -1,0 +1,26 @@
+return {
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{ "kylechui/nvim-surround", version = "*", event = "VeryLazy" },
+  { "windwp/nvim-autopairs", event = "InsertEnter" },
+	{ 'windwp/nvim-autopairs', event = "InsertEnter", config = true },
+  { "sitiom/nvim-numbertoggle" },
+  { "catppuccin/nvim", as = "catppuccin", event = "VeryLazy" },
+  { "mbbill/undotree" },
+  { "tpope/vim-fugitive" },
+  { "nvim-tree/nvim-tree.lua" },
+  { "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
+  { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' }, options = {'--no'} },
+  { "terryma/vim-expand-region" },
+  { "airblade/vim-gitgutter" },
+  { "stevearc/oil.nvim" },
+	{ "stevearc/dressing.nvim", event = "VeryLazy" },
+	{ "monaqa/dial.nvim", event = "VeryLazy" },
+
+	-- lsp
+	{'neovim/nvim-lspconfig'},
+	{'williamboman/mason.nvim'},
+	{'williamboman/mason-lspconfig.nvim'},
+	{'hrsh7th/cmp-nvim-lsp'},
+	{'hrsh7th/nvim-cmp'},
+	{'hrsh7th/cmp-buffer'},
+}

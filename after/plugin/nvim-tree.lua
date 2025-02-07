@@ -20,15 +20,6 @@ require("nvim-tree").setup({
       quit_on_open = true, -- closes the tree when you open a file
     },
   },
-  view = {
-    mappings = {
-      -- set custom_only to false if you want to keep the default mappings
-      custom_only = true,
-      list = {
-        { key = "t", action = "tabedit", mode = "n" },
-      },
-    },
-  },
 })
 vim.keymap.set('n', '<C-n>', vim.cmd.NvimTreeToggle)
 vim.keymap.set('n', '<leader>n', vim.cmd.NvimTreeFindFile)
