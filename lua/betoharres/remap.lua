@@ -42,6 +42,8 @@ vim.keymap.set('n', '<leader>j', ':GFiles --others --exclude-standard --cached<C
 vim.keymap.set('n', '<leader>J', vim.cmd.Files)
 vim.keymap.set('n', '<leader>c', vim.cmd.Commands)
 vim.keymap.set('n', '<leader>a', vim.cmd.Ag)
+vim.keymap.set('n', '<C-n>', vim.cmd.NvimTreeToggle)
+vim.keymap.set('n', '<leader>n', vim.cmd.NvimTreeFindFileToggle)
 
 local function strip_whitespace()
   -- Save current cursor position (row, col)

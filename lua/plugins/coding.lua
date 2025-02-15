@@ -6,9 +6,8 @@ return {
   { 'windwp/nvim-autopairs', event = "InsertEnter", config = true },
   { "sitiom/nvim-numbertoggle" },
   { "terryma/vim-expand-region" },
-  { "nvim-tree/nvim-tree.lua" },
   { "airblade/vim-gitgutter" },
   { "mbbill/undotree" },
   { "monaqa/dial.nvim", event = "VeryLazy" },
-
+  { "nvim-tree/nvim-tree.lua", version = "*", lazy = false, dependencies = { "nvim-tree/nvim-web-devicons", } },
 }

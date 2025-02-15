@@ -1,8 +1,10 @@
 require("betoharres.remap")
 require("betoharres.lsp")
+require("betoharres.tree")
+require("betoharres.fzf")
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.termguicolors = true
-vim.cmd.colorscheme "gruvbox-material"
+vim.cmd.colorscheme "doom-one"
 
 -- For convenience, assign the "opt" table to a local variable.
 local opt = vim.opt

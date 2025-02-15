@@ -171,3 +171,67 @@ cmp.setup({
       })
     end
   }
+
+-- -- -- -- -- ||| handle error messages ||| --- -- -- -- -- -- --
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+  }
+)
+
+-- Function to show expanded diagnostic in a bottom split
+local function show_expanded_diagnostic()
+  -- Get the current line (0-indexed)
+  local curr_line = vim.api.nvim_win_get_cursor(0)[1] - 1
+  -- Get all diagnostics for the current line
+  local diagnostics = vim.diagnostic.get(0, { lnum = curr_line })
+  if vim.tbl_isempty(diagnostics) then
+    vim.notify("No diagnostics on this line", vim.log.levels.INFO)
+    return
+  end
+
+  -- Concatenate messages from all diagnostics on the line.
+  local lines = {}
+  for i, diag in ipairs(diagnostics) do
+    table.insert(lines, ("Diagnostic %d:"):format(i))
+    for _, line in ipairs(vim.split(diag.message, "\n")) do
+      table.insert(lines, "  " .. line)
+    end
+    table.insert(lines, "")  -- blank line between diagnostics
+  end
+
+  -- Open a new bottom split
+  vim.cmd("botright new")
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+  vim.api.nvim_buf_set_option(buf, "filetype", "markdown")  -- Optional: set filetype for syntax highlight
+  vim.api.nvim_buf_set_option(buf, "modifiable", false)
+  vim.api.nvim_buf_set_option(buf, "modified", false)
+end
+
+vim.keymap.set("n", "<leader>e", show_expanded_diagnostic, { desc = "Show expanded diagnostic" })
+vim.keymap.set("n", "<leader>d", function()
+  vim.diagnostic.setloclist({ open = true })
+end, { desc = "Open diagnostic location list" })
+
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--   callback = function()
+--     local curr_line = vim.api.nvim_win_get_cursor(0)[1] - 1
+--     local diags = vim.diagnostic.get(0, { lnum = curr_line })
+--     if #diags > 0 then
+--       local msg = diags[1].message:gsub("\n", " ") -- flatten the message into one line
+--       local max_columns = vim.o.columns
+--       if #msg > max_columns then
+--         msg = msg:sub(1, max_columns - 3) .. "..."
+--       end
+--       vim.api.nvim_echo({ { "Diagnostic: " .. msg, "ErrorMsg" } }, false, {})
+--     end
+--   end,
+-- })
+-- -- -- -- / || handle error messages ||| --- -- -- -- --
