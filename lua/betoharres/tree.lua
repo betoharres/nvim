@@ -19,6 +19,8 @@ end
 require("nvim-tree").setup {
   ---
   on_attach = my_on_attach,
+  git = { ignore = false },
+  filters = { dotfiles = false, custom = { '^.git$' }},
   actions = {
     open_file = {
       quit_on_open = true, -- closes the explorer when opening a file
