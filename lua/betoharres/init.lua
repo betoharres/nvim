@@ -29,7 +29,7 @@ opt.cursorline = true
 opt.laststatus = 2
 
 opt.tabstop = 2
-opt.expandtab = true
+-- opt.expandtab = true
 opt.shiftwidth = 2
 opt.shiftround = true
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
@@ -89,3 +89,10 @@ vim.cmd([[
   highlight DiffChange guifg=black guibg=skyblue1
   highlight DiffDelete guifg=black guibg=gray45 gui=none
 ]])
+
+-- vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+--   pattern = "*.gd",
+--   callback = function()
+--     vim.opt_local.expandtab = false
+--   end,
+-- })
