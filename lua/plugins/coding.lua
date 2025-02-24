@@ -8,6 +8,7 @@ return {
   { "terryma/vim-expand-region" },
   { "airblade/vim-gitgutter" },
   { "mbbill/undotree" },
+  { "mfussenegger/nvim-dap" },
   { "monaqa/dial.nvim", event = "VeryLazy" },
   { "nvim-tree/nvim-tree.lua", version = "*", lazy = false, dependencies = { "nvim-tree/nvim-web-devicons", } },
 }

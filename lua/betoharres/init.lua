@@ -29,15 +29,15 @@ opt.cursorline = true
 opt.laststatus = 2
 
 opt.tabstop = 2
--- opt.expandtab = true
+opt.expandtab = true
 opt.shiftwidth = 2
 opt.shiftround = true
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = '  ',  -- two spaces between single quotes
-  trail = '·',
-  nbsp = '·',
+	tab = '  ', -- two spaces between single quotes
+	trail = '·',
+	nbsp = '·',
 }
 
 vim.g.have_nerd_font = true
@@ -65,8 +65,8 @@ opt.colorcolumn = "+1"
 -- or if you want an absolute column, for example, column 81:
 -- opt.colorcolumn = "81"
 
-vim.opt.complete:append("kspell")    -- Autocomplete with spell-check
-vim.opt.diffopt:append("vertical")   -- Always use vertical diffs
+vim.opt.complete:append("kspell")  -- Autocomplete with spell-check
+vim.opt.diffopt:append("vertical") -- Always use vertical diffs
 
 -- show markdown characters
 vim.opt.conceallevel = 0
