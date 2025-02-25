@@ -240,10 +240,35 @@ end, { desc = "Open diagnostic location list" })
 vim.diagnostic.config({
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = '', -- or other icon of your choice here, this is just what my config has:
+			[vim.diagnostic.severity.ERROR] = '',
 			[vim.diagnostic.severity.WARN] = '',
 			[vim.diagnostic.severity.INFO] = '',
 			[vim.diagnostic.severity.HINT] = '󰌵',
 		},
 	},
 })
+
+-- gdscript --
+require('lspconfig').efm.setup({
+  init_options = { documentFormatting = true },
+  filetypes = { "gdscript" },
+  settings = {
+    rootMarkers = { ".git/" },
+    languages = {
+      gdscript = {
+        {
+          formatCommand = "gdformat --quiet ${INPUT}",
+          formatStdin = false,  -- gdformat works on a file, not stdin
+        },
+      },
+    },
+  },
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {"*.gd"},
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+-- -- gdscript -- --
