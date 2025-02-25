@@ -5,4 +5,5 @@ return {
   {'hrsh7th/cmp-buffer'},
   {'williamboman/mason.nvim'},
   {'williamboman/mason-lspconfig.nvim'},
+  {'stevearc/conform.nvim'},
 }

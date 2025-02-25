@@ -52,7 +52,6 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
-
 cmp.setup({
 	sources = {
 		{ name = 'nvim_lsp' },
@@ -62,15 +61,12 @@ cmp.setup({
 		-- Navigate between completion items
 		['<C-p>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
 		['<C-n>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
-
 		-- `Enter` key to confirm completion
 		-- ['<CR>'] = cmp.mapping.confirm({select = false}),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
-
 		-- Scroll up and down in the completion documentation
 		['<C-u>'] = cmp.mapping.scroll_docs(-4),
 		['<C-d>'] = cmp.mapping.scroll_docs(4),
-
 		--
 		--
 		-- Ctrl+Space to trigger completion menu
@@ -94,7 +90,6 @@ cmp.setup({
 		--
 		--
 		--
-
 	}),
 	snippet = {
 		expand = function(args)
@@ -112,7 +107,6 @@ local buffer_autoformat = function(bufnr)
 	local group = 'lsp_autoformat'
 	vim.api.nvim_create_augroup(group, { clear = false })
 	vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
-
 	vim.api.nvim_create_autocmd('BufWritePre', {
 		buffer = bufnr,
 		group = group,
@@ -194,7 +188,6 @@ local function show_expanded_diagnostic()
 		vim.notify("No diagnostics on this line", vim.log.levels.INFO)
 		return
 	end
-
 	-- Concatenate messages from all diagnostics on the line.
 	local lines = {}
 	for i, diag in ipairs(diagnostics) do
@@ -204,7 +197,6 @@ local function show_expanded_diagnostic()
 		end
 		table.insert(lines, "") -- blank line between diagnostics
 	end
-
 	-- Open a new bottom split
 	vim.cmd("botright new")
 	local buf = vim.api.nvim_get_current_buf()
@@ -219,6 +211,17 @@ vim.keymap.set("n", "<leader>e", show_expanded_diagnostic, { desc = "Show expand
 vim.keymap.set("n", "<leader>d", function()
 	vim.diagnostic.setloclist({ open = true })
 end, { desc = "Open diagnostic location list" })
+
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.INFO] = '',
+			[vim.diagnostic.severity.HINT] = '󰌵',
+		},
+	},
+})
 
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -237,38 +240,20 @@ end, { desc = "Open diagnostic location list" })
 -- })
 -- -- -- -- / || handle error messages ||| --- -- -- -- --
 
-vim.diagnostic.config({
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = '',
-			[vim.diagnostic.severity.WARN] = '',
-			[vim.diagnostic.severity.INFO] = '',
-			[vim.diagnostic.severity.HINT] = '󰌵',
-		},
-	},
-})
-
 -- gdscript --
-require('lspconfig').efm.setup({
-  init_options = { documentFormatting = true },
-  filetypes = { "gdscript" },
-  settings = {
-    rootMarkers = { ".git/" },
-    languages = {
-      gdscript = {
-        {
-          formatCommand = "gdformat --quiet ${INPUT}",
-          formatStdin = false,  -- gdformat works on a file, not stdin
-        },
-      },
-    },
+
+require("conform").setup({
+  formatters_by_ft = {
+    gdscript = { "gdformat", lsp_format = "fallback"  },
   },
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = {"*.gd"},
-  callback = function()
-    vim.lsp.buf.format({ async = false })
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+    -- vim.lsp.buf.format({ async = false })
   end,
 })
+
 -- -- gdscript -- --
