@@ -251,7 +251,7 @@ require("conform").setup({
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = {"*.gd"},
   callback = function(args)
-    require("conform").format({ bufnr = args.buf })
+    require("conform").format({ bufnr = args.buf, timeout_ms = 10000  })
     -- vim.lsp.buf.format({ async = false })
   end,
 })
