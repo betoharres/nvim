@@ -17,7 +17,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	desc = 'LSP actions',
 	callback = function(event)
 		local opts = { buffer = event.buf }
-
 		vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
 		vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
 		vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -157,9 +156,11 @@ require 'nvim-treesitter.configs'.setup {
 						'css',
 						'templ',
 						'vim',
+            'sql',
 						'markdown',
 					},
 					sync_install = false,
+          auto_install = true,
 					highlight = { enable = true },
 					indent = { enable = true },
 					-- autotag = { enable = true },
@@ -257,3 +258,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- -- gdscript -- --
+
+vim.filetype.add({ extension = { templ = "templ" } })
