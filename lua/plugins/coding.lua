@@ -10,6 +10,7 @@ return {
   { "mbbill/undotree" },
   { "mfussenegger/nvim-dap" },
   { "joerdav/templ.vim" },
+  { "tpope/vim-abolish" },
   { "monaqa/dial.nvim", event = "VeryLazy" },
   { "nvim-tree/nvim-tree.lua", version = "*", lazy = false, dependencies = { "nvim-tree/nvim-web-devicons", } },
 }
