@@ -5,10 +5,11 @@ vim.opt.signcolumn = 'yes'
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
+capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
 	'force',
 	lspconfig_defaults.capabilities,
-	require('cmp_nvim_lsp').default_capabilities()
+  capabilities
 )
 
 -- This is where you enable features that only work
@@ -35,10 +36,32 @@ require('lspconfig').gdscript.setup {}
 require('lspconfig').gopls.setup {}
 require('lspconfig').rubocop.setup {}
 
--- require('lspconfig').html.setup{}
--- require('lspconfig').htmx.setup{}
--- require('lspconfig').tailwindcss.setup{}
--- require('lspconfig').templ.setup {}
+require('lspconfig').html.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+}
+require('lspconfig').htmx.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+}
+require('lspconfig').tailwindcss.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+    settings = {
+      tailwindCSS = {
+        includeLanguages = {
+          templ = "html",
+        },
+      },
+    },
+}
+require('lspconfig').templ.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 -- require('lspconfig').gdshader_lsp.setup{}
 
 require('mason').setup({})
