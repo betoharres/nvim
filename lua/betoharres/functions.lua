@@ -1,4 +1,4 @@
-function strip_whitespace()
+function Strip_whitespace()
 	-- Save current cursor position (row, col)
 	local cur_row, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
 	-- Save the current search register

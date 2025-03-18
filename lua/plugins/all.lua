@@ -14,7 +14,6 @@ return {
 	{ "joerdav/templ.vim" },
 
 	{ "nvim-lua/plenary.nvim" },
-	{ "darakian/mini_markdown" },
 
 	-- debugger
 	{ "mfussenegger/nvim-dap" },
@@ -26,7 +25,6 @@ return {
 	{ "hrsh7th/cmp-buffer" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
-	-- {'stevearc/conform.nvim'},
 
 	-- ui
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },

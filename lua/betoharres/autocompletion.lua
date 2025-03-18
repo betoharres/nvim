@@ -1,22 +1,22 @@
-local cmp = require('cmp')
+local cmp = require("cmp")
 cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-  },
+	sources = {
+		{ name = "nvim_lsp" },
+	},
 	mapping = cmp.mapping.preset.insert({
 		-- Navigate between completion items
-		['<C-p>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
-		['<C-n>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
+		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
+		["<C-n>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 		-- `Enter` key to confirm completion
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		-- Scroll up and down in the completion documentation
-		['<C-u>'] = cmp.mapping.scroll_docs(-4),
-		['<C-d>'] = cmp.mapping.scroll_docs(4),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		--
 		-- ['<Tab>'] = cmp.mapping.complete(),
-		['<Tab>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
+		["<Tab>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 		-- -- Go to previous item
-		['<S-Tab>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+		["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
 		-- Simple tab complete
 		-- ['<Tab>'] = cmp.mapping(function(fallback)
 		--   local col = vim.fn.col('.') - 1
@@ -34,9 +34,15 @@ cmp.setup({
 		--
 		--
 	}),
-	preselect = 'item',
+	preselect = "item",
 	completion = {
-		completeopt = 'menu,menuone,noinsert'
+		completeopt = "menu,menuone,noinsert",
 	},
 })
 
+cmp.setup.filetype({ "sql" }, {
+	sources = {
+		{ name = "vim-dadbod-completion" },
+		{ name = "buffer" },
+	},
+})
