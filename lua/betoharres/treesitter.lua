@@ -11,4 +11,5 @@ require("nvim-treesitter.configs").setup({
 		"yaml",
 		"bash",
 	},
+	highlight = { enable = true },
 })

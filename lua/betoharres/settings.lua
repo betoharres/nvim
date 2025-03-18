@@ -1,6 +1,6 @@
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.termguicolors = true
-vim.cmd.colorscheme "doom-one"
+vim.cmd.colorscheme("doom-one")
 
 -- For convenience, assign the "opt" table to a local variable.
 local opt = vim.opt
@@ -31,9 +31,9 @@ opt.shiftround = true
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = '  ', -- two spaces between single quotes
-	trail = '·',
-	nbsp = '·',
+	tab = "  ", -- two spaces between single quotes
+	trail = "·",
+	nbsp = "·",
 }
 
 vim.g.have_nerd_font = true
@@ -44,9 +44,9 @@ opt.autowrite = true
 -- Spell checking in American English and Brazilian Portuguese
 opt.spelllang = { "en_us", "pt_br" }
 
-vim.opt.number = true         -- Show absolute line numbers
+vim.opt.number = true -- Show absolute line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
-vim.opt.numberwidth = 1       -- Set the minimum column width
+vim.opt.numberwidth = 1 -- Set the minimum column width
 
 -- Use one space, not two, after punctuation when joining lines
 opt.joinspaces = false
@@ -61,8 +61,8 @@ opt.colorcolumn = "+1"
 -- or if you want an absolute column, for example, column 81:
 -- opt.colorcolumn = "81"
 
-vim.opt.complete:append("kspell")  -- Autocomplete with spell-check
-vim.opt.diffopt:append("vertical") -- Always use vertical diffs
+-- vim.opt.complete:append("kspell") -- Autocomplete with spell-check
+-- vim.opt.diffopt:append("vertical") -- Always use vertical diffs
 
 -- show markdown characters
-vim.opt.conceallevel = 0
+-- vim.opt.conceallevel = 0
