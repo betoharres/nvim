@@ -19,7 +19,7 @@ local buffer_autoformat = function(bufnr)
 end
 
 require("mason-null-ls").setup({
-  ensure_installed = { "stylua", "jq", "golines", "prettier", "eslint", "rubocop" }
+  ensure_installed = { "stylua", "jq", "golines", "prettierd", "eslint", "rubocop" }
 })
 
 local null_ls = require("null-ls")
