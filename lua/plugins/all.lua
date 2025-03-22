@@ -29,6 +29,7 @@ return {
 	-- ui
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "NTBBloodbath/doom-one.nvim" },
+	{ "nvim-lualine/lualine.nvim" },
 
 	-- null-ls (code format)
 	{

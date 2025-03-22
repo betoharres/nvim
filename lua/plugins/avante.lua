@@ -1,3 +1,4 @@
+-- avante slows down <leader>a (find grep)
 return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
