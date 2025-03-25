@@ -11,6 +11,43 @@ function Strip_whitespace()
 	vim.fn.setreg("/", old_query)
 end
 
+-- Function to show expanded diagnostic in a bottom split with controlled height
+function Show_expanded_diagnostic()
+	-- Get the current line (0-indexed)
+	local curr_line = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+	-- Get all diagnostics for the current line
+	local diagnostics = vim.diagnostic.get(0, { lnum = curr_line })
+	if vim.tbl_isempty(diagnostics) then
+		vim.notify("No diagnostics on this line", vim.log.levels.INFO)
+		return
+	end
+
+	-- Prepare diagnostic lines
+	local lines = {}
+	for i, diag in ipairs(diagnostics) do
+		-- Split the message into lines to handle multiline messages
+		local msg_lines = vim.split(diag.message, "\n")
+		-- table.insert(lines, string.format("%d:", i))
+		vim.list_extend(lines, msg_lines)
+		table.insert(lines, "")
+	end
+
+	-- Create bottom split with a fixed small height
+	vim.cmd("botright 10new")
+
+	-- Set up buffer
+	local buf = vim.api.nvim_get_current_buf()
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+	-- Configure buffer options
+	vim.bo.buftype = "nofile"
+	vim.bo.filetype = "ruby"
+	vim.bo.bufhidden = "wipe"
+	vim.bo.swapfile = false
+	vim.bo.modifiable = false
+end
+
 require("lualine").setup()
 
 -- vim.api.nvim_create_autocmd("WinClosed", {

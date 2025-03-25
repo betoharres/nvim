@@ -1,7 +1,7 @@
 require("betoharres.functions")
 require("betoharres.settings")
 require("betoharres.remap")
-require("betoharres.setup-lsp")
+require("betoharres.lsp")
 require("betoharres.autocompletion")
 require("betoharres.autoformat")
 require("betoharres.fzf")
