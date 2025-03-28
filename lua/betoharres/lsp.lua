@@ -29,6 +29,17 @@ require("mason-lspconfig").setup({
 	-- with the ones you want to install
 	ensure_installed = { "lua_ls", "ts_ls", "gopls", "rubocop", "rust_analyzer", "templ", "htmx", "bashls" },
 	handlers = {
+		html = function()
+			require("lspconfig").html.setup({
+				configurationSection = { "html", "css", "javascript" },
+				embeddedLanguages = {
+					css = true,
+					javascript = true,
+				},
+				provideFormatter = true,
+			})
+		end,
+
 		function(server_name)
 			require("lspconfig")[server_name].setup({})
 		end,

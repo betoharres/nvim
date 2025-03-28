@@ -25,7 +25,7 @@ function Show_expanded_diagnostic()
 
 	-- Prepare diagnostic lines
 	local lines = {}
-	for i, diag in ipairs(diagnostics) do
+	for _, diag in ipairs(diagnostics) do
 		-- Split the message into lines to handle multiline messages
 		local msg_lines = vim.split(diag.message, "\n")
 		-- table.insert(lines, string.format("%d:", i))
