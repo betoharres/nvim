@@ -12,6 +12,8 @@ return {
 	{ "mbbill/undotree" },
 	{ "monaqa/dial.nvim", event = "VeryLazy" },
 	{ "joerdav/templ.vim" },
+	{ "windwp/nvim-ts-autotag" },
+
 	{
 		"olrtg/nvim-emmet",
 		config = function()

@@ -25,6 +25,18 @@ require("mason-null-ls").setup({
 })
 
 local null_ls = require("null-ls")
+
+local templ_format = {
+	name = "templ",
+	method = require("null-ls.methods").internal.FORMATTING,
+	filetypes = { "templ" },
+	generator = require("null-ls.helpers").formatter_factory({
+		command = "templ",
+		args = { "fmt", "-" },
+		to_stdin = true,
+	}),
+}
+
 null_ls.setup({
 	sources = {
 		-- js format
@@ -35,6 +47,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.golines.with({
 			extra_args = { "--max-len=80" }, -- Adjust maximum line length as needed
 		}),
+		templ_format,
 		require("none-ls.diagnostics.eslint"),
 	},
 	on_attach = function(_, buf)
