@@ -40,6 +40,12 @@ require("mason-lspconfig").setup({
 			})
 		end,
 
+		emmet_language_server = function()
+			require("lspconfig").emmet_language_server.setup({
+				filetypes = { "html", "templ" },
+			})
+		end,
+
 		function(server_name)
 			require("lspconfig")[server_name].setup({})
 		end,
