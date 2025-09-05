@@ -44,6 +44,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.rubocop,
 		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.formatting.gdformat,
 		null_ls.builtins.formatting.golines.with({
 			extra_args = { "--max-len=80" }, -- Adjust maximum line length as needed
 		}),

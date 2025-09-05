@@ -1,5 +1,12 @@
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
+-- require("cmp").setup({
+-- 	sources = {
+-- 		{ name = "nvim_lsp" },
+-- 	},
+-- })
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+--
 local lspconfig_defaults = require("lspconfig").util.default_config
 lspconfig_defaults.capabilities =
 	vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
@@ -25,9 +32,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
+	automatic_enable = true,
 	-- Replace the language servers listed here
 	-- with the ones you want to install
-	ensure_installed = { "lua_ls", "ts_ls", "gopls", "rubocop", "rust_analyzer", "templ", "htmx", "bashls" },
+	ensure_installed = {
+		"lua_ls",
+		"ts_ls",
+		"gopls",
+		"rubocop",
+		"rust_analyzer",
+		"templ",
+		"htmx",
+		"bashls",
+	},
 	handlers = {
 		html = function()
 			require("lspconfig").html.setup({
@@ -63,6 +80,11 @@ vim.diagnostic.config({
 	},
 })
 
+-- lspconfig.emmet_language_server.setup({
+-- 	filetypes = { "html", "templ", "typescriptreact", "javascriptreact" },
+-- 	capabilities = capabilities,
+-- })
+
 vim.keymap.set("n", "<leader>e", Show_expanded_diagnostic, { desc = "Show expanded diagnostic" })
 
 -- vim.keymap.set("n", "<leader>d", function()
@@ -86,6 +108,7 @@ vim.keymap.set("n", "<leader>e", Show_expanded_diagnostic, { desc = "Show expand
 -- -- })
 -- -- -- -- -- / || handle error messages ||| --- -- -- -- --
 --
+-- vim.filetype.add({ extension = { templ = "templ" } })
 -- -- gdscript --
 --
 -- require("conform").setup({
@@ -109,4 +132,15 @@ vim.keymap.set("n", "<leader>e", Show_expanded_diagnostic, { desc = "Show expand
 -- })
 --
 -- -- -- gdscript -- --
--- vim.filetype.add({ extension = { templ = "templ" } })
+---
+--- Language server for GDScript, used by Godot Engine.
+require("lspconfig")["gdscript"].setup({
+	name = "godot",
+	cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
+})
+local dap = require("dap")
+dap.adapters.godot = {
+	type = "server",
+	host = "127.0.0.1",
+	port = 6006,
+}
