@@ -134,7 +134,7 @@ vim.keymap.set("n", "<leader>e", Show_expanded_diagnostic, { desc = "Show expand
 -- -- -- gdscript -- --
 ---
 --- Language server for GDScript, used by Godot Engine.
-require("lspconfig")["gdscript"].setup({
+vim.lsp.config("gdscript", {
 	name = "godot",
 	cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
 })
