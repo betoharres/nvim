@@ -144,3 +144,21 @@ dap.adapters.godot = {
 	host = "127.0.0.1",
 	port = 6006,
 }
+
+-- dap.adapters.go = {
+-- 	type = "server",
+-- 	port = "${port}",
+-- 	executable = {
+-- 		command = "dlv",
+-- 		args = { "dap", "-l", "127.0.0.1:${port}" },
+-- 	},
+-- }
+-- dap.configurations.go = {
+-- 	{
+-- 		type = "go",
+-- 		name = "Launch",
+-- 		request = "launch",
+-- 		program = "${file}",
+-- 	},
+-- }
+require("dap-go").setup()
