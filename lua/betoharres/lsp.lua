@@ -133,11 +133,14 @@ vim.keymap.set("n", "<leader>e", Show_expanded_diagnostic, { desc = "Show expand
 --
 -- -- -- gdscript -- --
 ---
---- Language server for GDScript, used by Godot Engine.
+-- 1. Define the configuration
 vim.lsp.config("gdscript", {
 	name = "godot",
 	cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
 })
+-- 2. Explicitly enable it (This is what was missing before)
+vim.lsp.enable("gdscript")
+
 local dap = require("dap")
 dap.adapters.godot = {
 	type = "server",
