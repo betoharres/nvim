@@ -4,6 +4,8 @@ return {
 	event = "VeryLazy",
 	version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
 	opts = {
+		-- this file can contain specific instructions for your project
+		instructions_file = "avante.md",
 		output = {
 			filetype = "Avante",
 			enable_markdown_rendering = true,
@@ -30,7 +32,7 @@ return {
 		providers = {
 			openai = {
 				endpoint = "https://api.openai.com/v1",
-				model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+				model = "gpt-5.1", -- your desired model (or use gpt-4o, etc.)
 				timeout = 30000, -- timeout in milliseconds
 				extra_request_body = { temperature = 0 },
 				max_tokens = 4096,
