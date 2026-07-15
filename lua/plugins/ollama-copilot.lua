@@ -1,0 +1,34 @@
+return {}
+-- -- Custom configuration (defaults shown)
+-- return {
+-- 	"jacob411/Ollama-Copilot",
+-- 	opts = {
+-- 		model_name = "qwen2.5-coder:7b",
+-- 		-- ollama_url = "http://localhost:11434", -- URL for Ollama server, Leave blank to use default local instance.
+-- 		stream_suggestion = true,
+-- 		python_command = vim.fn.expand("~/.local/share/ollama-copilot/venv/bin/python"),
+-- 		filetypes = {
+-- 			"go",
+-- 			"javascript",
+-- 			"typescript",
+-- 			"typescriptreact",
+-- 			"javascriptreact",
+-- 			"lua",
+-- 			"vim",
+-- 			"sql",
+-- 		},
+-- 		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+-- 		ollama_model_opts = {
+-- 			num_predict = 80,
+-- 			temperature = 0,
+-- 			top_p = 0.9,
+-- 			repeat_penalty = 1.05,
+-- 			num_ctx = 4096,
+-- 		},
+-- 		keymaps = {
+-- 			suggestion = "<C-s>",
+-- 			reject = "<C-r>",
+-- 			insert_accept = "<S-End>",
+-- 		},
+-- 	},
+-- }

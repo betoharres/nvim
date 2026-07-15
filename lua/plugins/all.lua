@@ -17,6 +17,7 @@ return {
 	{ "olrtg/nvim-emmet" },
 
 	{ "nvim-lua/plenary.nvim" },
+	{ "folke/snacks.nvim" },
 
 	-- debugger
 	{
